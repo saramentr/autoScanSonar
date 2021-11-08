@@ -5,7 +5,7 @@ import shutil
 pathGenGit = "/tmp/gengit"
 prePathWorkGit = "/tmp/workgit"
 pathToList = pathGenGit+"/work/listProjects"
-repoToList = "https://github.com/saramentr/ManualCheck.git"
+repoToList = "https://github.com/saramentr/autoScanSonar.git"
 
 if True:
   if os.path.exists(pathGenGit):
