@@ -7,7 +7,7 @@ prePathWorkGit = "/tmp/workgit"
 pathToList = pathGenGit+"/work/listProjects"
 repoToList = "https://github.com/saramentr/ManualCheck.git"
 
-while True:
+if True:
   if os.path.exists(pathGenGit):
     shutil.rmtree(pathGenGit)
   os.system("git clone "+repoToList+" "+pathGenGit)
