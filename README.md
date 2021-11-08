@@ -1,1 +1,3 @@
 # autoScanSonar
+
+standalone sonar scanner
