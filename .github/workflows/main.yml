@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: clean docker images
         run: |
-          (docker kill $(docker ps -q))
+          (docker kill `$(docker ps -q)`)
           (docker rm $(docker ps -a -q))
           (docker rmi -f $(docker images -a -q))
       - name: install and run tool for work
