@@ -7,9 +7,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: clean docker images
+        run: |
+          (docker kill $(docker ps -q))
+          (docker rm $(docker ps -a -q))
+          (docker rmi -f $(docker images -a -q))
       - name: install and run tool for work
         run: |
-          docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 8080:9000 sonarqube:latest
           (cd ~&&wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.0.43852.zip&&unzip sonarqube-8.9.0.43852.zip)
           (cd ~&&wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.1.2450-linux.zip&&unzip sonar-scanner-cli-4.6.1.2450-linux.zip)
           (cd ~&&rm sonarqube-8.9.0.43852.zip&&rm sonar-scanner-cli-4.6.1.2450-linux.zip)
