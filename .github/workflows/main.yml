@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: clean docker images
-        run: |
-          (docker kill `$(docker ps -q)`)
-          (docker rm $(docker ps -a -q))
-          (docker rmi -f $(docker images -a -q))
       - name: install and run tool for work
         run: |
           (cd ~&&wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.0.43852.zip&&unzip sonarqube-8.9.0.43852.zip)
