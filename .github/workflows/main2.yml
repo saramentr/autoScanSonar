@@ -1,0 +1,27 @@
+name: scan by list
+on:
+  push:
+    paths:
+      - 'work2/listProjects'
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: cleaned space
+        run: |
+          docker rmi $(docker image ls -aq)
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+      - name: install and run tool for work
+        run: |
+          (cd ~&&wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.0.43852.zip&&unzip sonarqube-8.9.0.43852.zip)
+          (cd ~&&wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.1.2450-linux.zip&&unzip sonar-scanner-cli-4.6.1.2450-linux.zip)
+          (cd ~&&rm sonarqube-8.9.0.43852.zip&&rm sonar-scanner-cli-4.6.1.2450-linux.zip)
+          sudo apt-get install -y openjdk-11-jdk
+          echo "~/sonar-scanner-4.6.1.2450-linux/bin/" >> $GITHUB_PATH
+          echo "/usr/lib/jvm/java-11-openjdk-amd64/bin/" >> $GITHUB_PATH
+          whoami
+      - name: run
+        run: python3 work2/worker.py 
