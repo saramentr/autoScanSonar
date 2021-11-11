@@ -8,8 +8,8 @@ prePathWorkGit = "/tmp/workgit"
 
 if os.path.exists(pathToProj) and os.path.exists(pathToUrlKey):
   readFileTmp = open(pathToUrlKey, 'r').readlines()
-  keyS = readFileTmp.splitlines()[0].split("_:_")[0]
-  urlS = readFileTmp.splitlines()[0].split("_:_")[1]
+  keyS = readFileTmp[0].splitlines()[0].split("_:_")[0]
+  urlS = readFileTmp[0].splitlines()[0].split("_:_")[1]
   readFileTmp = open(pathToProj, 'r').readlines()
   indexPrj = 0
   for i in readFileTmp:
