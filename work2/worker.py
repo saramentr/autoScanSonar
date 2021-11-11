@@ -13,8 +13,8 @@ if os.path.exists(pathToProj) and os.path.exists(pathToUrlKey):
   readFileTmp = open(pathToProj, 'r').readlines()
   indexPrj = 0
   for i in readFileTmp:
-    if not i.splitlines()[0].endswith('.git'):
-      continue
+#    if not i.splitlines()[0].endswith('.git'):
+#      continue
     if os.path.exists(prePathWorkGit):
       shutil.rmtree(prePathWorkGit)
     os.system("git clone "+i.splitlines()[0]+" "+prePathWorkGit)
